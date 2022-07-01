@@ -1,0 +1,391 @@
+{{ 'slick.css' | asset_url | stylesheet_tag }}
+{{ 'jushar-slider-6.css' | asset_url | stylesheet_tag }}
+{{ 'animate.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'slick-animation.min.js' | asset_url }}"></script>
+
+<div class="jushar_slider_6_dev" style="background:{{ section.settings.background_color }}">
+  <div class="main_padding">
+  	{% for block in section.blocks %}
+    	<div class="slider_6">
+          <heading class="animated" data-animation-in="{{ section.settings.animation }}" data-delay-in="0.2">{{ block.settings.slider_titl }}</heading>
+          <description>{{ block.settings.slider_desc_short }}</description>
+          <div class="flex_6">
+            {% if block.settings.img_vid_1 == 'image' %}
+              {% if block.settings.image_1 != blank %}
+              <div class="image animated" data-animation-in="{{ section.settings.animation }}" data-delay-in="0.3">
+                  <img class="first_img" src="{{ block.settings.image_1 | image_url }}">
+                  <div class="shadow"><img class="shadow-img" src="{{ block.settings.image_1 | image_url }}"></div>
+              </div>
+              {% endif %}
+            {% else %}
+              {% if  block.settings.url_1 != blank %}
+              <div class="video_play animated" data-animation-in="{{ section.settings.animation }}" data-delay-in="0.3">
+                <div class="video f_video">
+                  <deferred-media>
+                  <button
+                    id="Deferred-Poster-Modal-{{ block.settings.url_1.id }}"
+                    class="video-section__poster media deferred-media__poster media--landscape"
+                    type="button"
+                  >
+                    {%- if block.settings.image_1 != blank -%}
+                      <img
+                        srcset="{%- if block.settings.image_1.width >= 375 -%}{{ block.settings.image_1 | image_url: width: 375 }} 375w,{%- endif -%}
+                          {%- if block.settings.image_1.width >= 750 -%}{{ block.settings.image_1 | image_url: width: 750 }} 750w,{%- endif -%}
+                          {%- if block.settings.image_1.width >= 1100 -%}{{ block.settings.image_1 | image_url: width: 1100 }} 1100w,{%- endif -%}
+                          {%- if block.settings.image_1.width >= 1500 -%}{{ block.settings.image_1 | image_url: width: 1500 }} 1500w,{%- endif -%}
+                          {%- if block.settings.image_1.width >= 1780 -%}{{ block.settings.image_1 | image_url: width: 1780 }} 1780w,{%- endif -%}
+                          {%- if block.settings.image_1.width >= 2000 -%}{{ block.settings.image_1 | image_url: width: 2000 }} 2000w,{%- endif -%}
+                          {%- if block.settings.image_1.width >= 3000 -%}{{ block.settings.image_1 | image_url: width: 3000 }} 3000w,{%- endif -%}
+                          {%- if block.settings.image_1.width >= 3840 -%}{{ block.settings.image_1 | image_url: width: 3840 }} 3840w,{%- endif -%}
+                          {{ block.settings.image_1 | image_url }} {{ block.settings.image_1.width }}w"
+                        src="{{ block.settings.image_1 | image_url: width: 1920 }}"
+                        sizes="{% if block.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+                        alt="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
+                        loading="lazy"
+                        width="{{ section.settings.image_1.width }}"
+                        height="{{ section.settings.image_1.height }}"
+                      >
+                    {%- else -%}
+                      {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                    {%- endif -%}
+                    <span class="deferred-media__poster-button motion-reduce">
+                      {%- render 'icon-play' -%}
+                    </span>
+                  </button>
+                  <template>
+                    {%- if block.settings.url_1.type == 'youtube' -%}
+                      <iframe width="600" height="600" src="https://www.youtube.com/embed/{{ block.settings.url_1.id }}?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="youtube video"></iframe>
+                    {%- else -%}
+                      <iframe width="600" height="600" src="https://player.vimeo.com/video/{{ block.settings.url_1.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="player vimeo video"></iframe>
+                    {%- endif -%}
+                  </template>
+                  </deferred-media>
+                </div>
+              </div>
+              {% endif %}
+            {% endif %}
+            {% if block.settings.img_vid_2 == 'image' %}
+            <div class="image animated" data-animation-in="{{ section.settings.animation }}" data-delay-in="0.4">
+            	<img class="second_img" src="{{ block.settings.image_2 | image_url }}">
+              	<div class="shadow"><img class="shadow-img" src="{{ block.settings.image_2 | image_url }}"></div>
+            </div>
+            {% else %}
+            	{% if  block.settings.url_2 != blank %}
+                <div class="video_play animated" data-animation-in="{{ section.settings.animation }}" data-delay-in="0.4">
+                  <div class="video s_video">
+                    <deferred-media>
+                    <button
+                      id="Deferred-Poster-Modal-{{ block.settings.url_2.id }}"
+                      class="video-section__poster media deferred-media__poster media--landscape"
+                      type="button"
+                    >
+                      {%- if block.settings.image_2 != blank -%}
+                        <img
+                          srcset="{%- if block.settings.image_2.width >= 375 -%}{{ block.settings.image_2 | image_url: width: 375 }} 375w,{%- endif -%}
+                            {%- if block.settings.image_2.width >= 750 -%}{{ block.settings.image_2 | image_url: width: 750 }} 750w,{%- endif -%}
+                            {%- if block.settings.image_2.width >= 1100 -%}{{ block.settings.image_2 | image_url: width: 1100 }} 1100w,{%- endif -%}
+                            {%- if block.settings.image_2.width >= 1500 -%}{{ block.settings.image_2 | image_url: width: 1500 }} 1500w,{%- endif -%}
+                            {%- if block.settings.image_2.width >= 1780 -%}{{ block.settings.image_2 | image_url: width: 1780 }} 1780w,{%- endif -%}
+                            {%- if block.settings.image_2.width >= 2000 -%}{{ block.settings.image_2 | image_url: width: 2000 }} 2000w,{%- endif -%}
+                            {%- if block.settings.image_2.width >= 3000 -%}{{ block.settings.image_2 | image_url: width: 3000 }} 3000w,{%- endif -%}
+                            {%- if block.settings.image_2.width >= 3840 -%}{{ block.settings.image_2 | image_url: width: 3840 }} 3840w,{%- endif -%}
+                            {{ block.settings.image_2 | image_url }} {{ block.settings.image_2.width }}w"
+                          src="{{ block.settings.image_2 | image_url: width: 1920 }}"
+                          sizes="{% if block.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+                          alt="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
+                          loading="lazy"
+                          width="{{ section.settings.image_2.width }}"
+                          height="{{ section.settings.image_2.height }}"
+                        >
+                      {%- else -%}
+                        {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                      {%- endif -%}
+                      <span class="deferred-media__poster-button motion-reduce">
+                        {%- render 'icon-play' -%}
+                      </span>
+                    </button>
+                    <template>
+                      {%- if block.settings.url_2.type == 'youtube' -%}
+                        <iframe width="600" height="600" src="https://www.youtube.com/embed/{{ block.settings.url_2.id }}?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="youtube video"></iframe>
+                      {%- else -%}
+                        <iframe width="600" height="600" src="https://player.vimeo.com/video/{{ block.settings.url_2.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="player vimeo video"></iframe>
+                      {%- endif -%}
+                    </template>
+                    </deferred-media>
+                  </div>
+                </div>
+              {% endif %}
+            {% endif %}
+            {% if block.settings.img_vid_3 == 'image' %}
+            <div class="image animated" data-animation-in="{{ section.settings.animation }}" data-delay-in="0.5">
+            	<img class="third_img" src="{{ block.settings.image_3 | image_url }}">
+              	<div class="shadow"><img class="shadow-img" src="{{ block.settings.image_3 | image_url }}"></div>
+            </div>
+            {% else %}
+            {% if  block.settings.url_3 != blank %}
+                <div class="video_play animated" data-animation-in="{{ section.settings.animation }}" data-delay-in="0.5">
+                  <div class="video t_video">
+                    <deferred-media>
+                    <button
+                      id="Deferred-Poster-Modal-{{ block.settings.url_3.id }}"
+                      class="video-section__poster media deferred-media__poster media--landscape"
+                      type="button"
+                    >
+                      {%- if block.settings.image_3 != blank -%}
+                        <img
+                          srcset="{%- if block.settings.image_3.width >= 375 -%}{{ block.settings.image_3 | image_url: width: 375 }} 375w,{%- endif -%}
+                            {%- if block.settings.image_3.width >= 750 -%}{{ block.settings.image_3 | image_url: width: 750 }} 750w,{%- endif -%}
+                            {%- if block.settings.image_3.width >= 1100 -%}{{ block.settings.image_3 | image_url: width: 1100 }} 1100w,{%- endif -%}
+                            {%- if block.settings.image_3.width >= 1500 -%}{{ block.settings.image_3 | image_url: width: 1500 }} 1500w,{%- endif -%}
+                            {%- if block.settings.image_3.width >= 1780 -%}{{ block.settings.image_3 | image_url: width: 1780 }} 1780w,{%- endif -%}
+                            {%- if block.settings.image_3.width >= 2000 -%}{{ block.settings.image_3 | image_url: width: 2000 }} 2000w,{%- endif -%}
+                            {%- if block.settings.image_3.width >= 3000 -%}{{ block.settings.image_3 | image_url: width: 3000 }} 3000w,{%- endif -%}
+                            {%- if block.settings.image_3.width >= 3840 -%}{{ block.settings.image_3 | image_url: width: 3840 }} 3840w,{%- endif -%}
+                            {{ block.settings.image_3 | image_url }} {{ block.settings.image_3.width }}w"
+                          src="{{ block.settings.image_3 | image_url: width: 1920 }}"
+                          sizes="{% if block.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+                          alt="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
+                          loading="lazy"
+                          width="{{ section.settings.image_3.width }}"
+                          height="{{ section.settings.image_3.height }}"
+                        >
+                      {%- else -%}
+                        {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                      {%- endif -%}
+                      <span class="deferred-media__poster-button motion-reduce">
+                        {%- render 'icon-play' -%}
+                      </span>
+                    </button>
+                    <template>
+                      {%- if block.settings.url_2.type == 'youtube' -%}
+                        <iframe width="600" height="600" src="https://www.youtube.com/embed/{{ block.settings.url_3.id }}?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="youtube video"></iframe>
+                      {%- else -%}
+                        <iframe width="600" height="600" src="https://player.vimeo.com/video/{{ block.settings.url_3.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="player vimeo video"></iframe>
+                      {%- endif -%}
+                    </template>
+                    </deferred-media>
+                  </div>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+    	</div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+$( document ).ready(function() {
+  $('.main_padding').slick({
+    autoplay: false,
+    speed: 800,
+    lazyLoad: 'progressive',
+    arrows: true,
+    dots: false,
+	prevArrow: '<div class="slick-nav prev-arrow"><i></i><svg><use xlink:href="#circle"></svg></div>',
+	nextArrow: '<div class="slick-nav next-arrow"><i></i><svg><use xlink:href="#circle"></svg></div>',
+  }).slickAnimation();
+  $('.slick-nav').on('click touch', function(e) {
+
+    e.preventDefault();
+
+    var arrow = $(this);
+
+    if(!arrow.hasClass('animate')) {
+        arrow.addClass('animate');
+        setTimeout(() => {
+            arrow.removeClass('animate');
+        }, 1600);
+    }
+
+  });
+});
+</script>
+{% schema %}
+  {
+    "name": "Jushar Slider 6",
+	"tag": "section",
+	"class": "section",
+	"max_blocks": 3,
+    "settings": [
+		{
+          "type": "color",
+          "id": "background_color",
+          "label": "Select slider background color",
+          "default": "#c8bebb"
+        },
+		{
+          "type": "select",
+          "id": "animation",
+          "options": [
+          {
+          "value": "fadeInUp",
+          "label": "fadeInUp"
+          },
+          {
+          "value": "fadeInLeft",
+          "label": "fadeInLeft"
+          },
+          {
+          "value": "fadeInRight",
+          "label": "fadeInRight"
+          }
+          ],
+          "default": "fadeInLeft",
+          "label": "select animation",
+          "info": "slider animations"
+        }
+	],
+	"blocks": [
+      {
+		"type": "column",
+        "name": "Jushar Slider 6",
+        "settings": [
+			{
+			  "type": "text",
+			  "id": "slider_titl",
+			  "label": "Slider Heading",
+			  "default": "The Great Indoors Playlist"
+			},
+			{
+			  "type": "text",
+			  "id": "slider_desc_short",
+			  "label": "Slider Short Description",
+			  "default": "Setting into a new rhythm? Slow down and let our soundtrack take you there"
+			},
+			{
+              "type": "header",
+              "content": "Image and Video First block"
+            },
+			{
+              "type": "select",
+              "id": "img_vid_1",
+              "options": [
+                {
+                  "value": "image",
+                  "label": "image"
+                },
+                {
+                  "value": "video",
+                  "label": "video"
+                }
+              ],
+              "default": "image",
+              "label": "select First block",
+              "info": "video poster and only show image"
+            },
+			{
+              "type": "image_picker",
+              "id": "image_1",
+              "label": "image picker"
+            },
+			{
+              "type": "video_url",
+              "id": "url_1",
+              "accept": [
+                "youtube",
+                "vimeo"
+              ],
+              "default": "https://www.youtube.com/watch?v=tX-igwX84Rc",
+              "label": "t:sections.video.settings.video_url.label",
+              "placeholder": "t:sections.video.settings.video_url.placeholder",
+              "info": "t:sections.video.settings.video_url.info"
+            },
+			
+			{
+              "type": "header",
+              "content": "Image and Video Second block"
+            },
+			{
+              "type": "select",
+              "id": "img_vid_2",
+              "options": [
+                {
+                  "value": "image",
+                  "label": "image"
+                },
+                {
+                  "value": "video",
+                  "label": "video"
+                }
+              ],
+              "default": "image",
+              "label": "select Second block",
+              "info": "video poster and only show image"
+            },
+			{
+              "type": "image_picker",
+              "id": "image_2",
+              "label": "image picker"
+            },
+			{
+              "type": "video_url",
+              "id": "url_2",
+              "accept": [
+                "youtube",
+                "vimeo"
+              ],
+              "default": "https://www.youtube.com/watch?v=tX-igwX84Rc",
+              "label": "t:sections.video.settings.video_url.label",
+              "placeholder": "t:sections.video.settings.video_url.placeholder",
+              "info": "t:sections.video.settings.video_url.info"
+            },
+			{
+              "type": "header",
+              "content": "Image and Video Third block"
+            },
+			{
+              "type": "select",
+              "id": "img_vid_3",
+              "options": [
+                {
+                  "value": "image",
+                  "label": "image"
+                },
+                {
+                  "value": "video",
+                  "label": "video"
+                }
+              ],
+              "default": "image",
+              "label": "select Third block",
+              "info": "video poster and only show image"
+            },
+			{
+              "type": "image_picker",
+              "id": "image_3",
+              "label": "image picker"
+            },
+			{
+              "type": "video_url",
+              "id": "url_3",
+              "accept": [
+                "youtube",
+                "vimeo"
+              ],
+              "default": "https://www.youtube.com/watch?v=tX-igwX84Rc",
+              "label": "t:sections.video.settings.video_url.label",
+              "placeholder": "t:sections.video.settings.video_url.placeholder",
+              "info": "t:sections.video.settings.video_url.info"
+            }
+		]
+      }
+	],
+	"presets": [
+      {
+        "name": "Jushar Slider 6",
+        "blocks": [
+          {
+            "type": "column"
+          }
+        ]
+      }
+    ]	
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
